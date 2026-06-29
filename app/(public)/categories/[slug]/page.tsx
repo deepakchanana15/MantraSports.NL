@@ -88,7 +88,7 @@ export default async function CategoryPage({
   }
 
   const totalPages = Math.ceil(total / PER_PAGE)
-  const displayName = DE_NAMES[slug] ?? category.name
+  const displayName = NL_NAMES[slug] ?? category.name
 
   return (
     <>
