@@ -108,8 +108,8 @@ function ProductFormContent({ product, categories }: ProductFormProps) {
   const uploadFile = useCallback(async (file: File) => {
     setUploading(true)
     try {
-      const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
-      const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+      const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ?? 'dgeaaga0s'
+      const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET ?? 'mantrasports_nl'
       if (!cloudName || !uploadPreset) throw new Error('Cloudinary is not configured.')
       const fd = new FormData()
       fd.append('file', file)
