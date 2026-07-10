@@ -5,6 +5,8 @@ import { ContactForm } from './ContactForm'
 import { prisma } from '@/lib/db/prisma'
 import { SITE_CONFIG } from '@/lib/config/site'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Contact — Mantra Sports NL',
   description:

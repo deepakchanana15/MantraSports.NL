@@ -124,7 +124,7 @@ export default async function CategoryPage({
         <div style={{ padding: category.imageUrl ? '20px 60px 0' : '48px 60px 0', maxWidth: 1440, margin: '0 auto' }}>
           {/* Breadcrumb */}
           <nav className="mb-4 flex items-center gap-1.5 text-xs text-[#999]">
-            <Link href="/" className="hover:text-[#E85D1A] transition-colors">Startseite</Link>
+            <Link href="/" className="hover:text-[#E85D1A] transition-colors">Startpagina</Link>
             <span>/</span>
             <Link href="/shop" className="hover:text-[#E85D1A] transition-colors">Shop</Link>
             <span>/</span>
@@ -153,7 +153,7 @@ export default async function CategoryPage({
 
           {/* Sort / count bar */}
           <div className="flex items-center justify-between py-3">
-            <p className="text-xs text-[#999]">{total} {total === 1 ? 'Produkt' : 'Produkte'}</p>
+            <p className="text-xs text-[#999]">{total} {total === 1 ? 'Product' : 'Producten'}</p>
             <form method="GET" className="flex items-center gap-2">
               {page > 1 && <input type="hidden" name="page" value="1" />}
               <select
@@ -169,7 +169,7 @@ export default async function CategoryPage({
                 type="submit"
                 className="rounded border border-[#E0DFDB] bg-white px-3 py-1.5 text-xs font-semibold text-[#444] hover:border-[#E85D1A] hover:text-[#E85D1A]"
               >
-                Sortieren
+                Sorteren
               </button>
             </form>
           </div>
@@ -180,13 +180,13 @@ export default async function CategoryPage({
       <section style={{ padding: '48px 60px 80px', maxWidth: 1440, margin: '0 auto' }}>
         {products.length === 0 ? (
           <div className="py-24 text-center">
-            <p className="font-display text-xl font-bold uppercase text-[#111]">Keine Produkte gefunden</p>
-            <p className="mt-2 text-sm text-[#999]">In dieser Kategorie sind noch keine Produkte vorhanden.</p>
+            <p className="font-display text-xl font-bold uppercase text-[#111]">Geen producten gevonden</p>
+            <p className="mt-2 text-sm text-[#999]">In deze categorie zijn nog geen producten beschikbaar.</p>
             <Link
               href="/shop"
               className="mt-6 inline-block border border-[#111] px-6 py-2.5 font-display text-xs font-bold uppercase tracking-widest text-[#111] hover:bg-[#111] hover:text-white transition-colors"
             >
-              Alle Produkte anzeigen
+              Alle producten bekijken
             </Link>
           </div>
         ) : (
@@ -210,7 +210,7 @@ export default async function CategoryPage({
               <Link href={`/categories/${slug}?sort=${sort}&page=${page - 1}`}
                 className="border border-[#E0DFDB] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#444] hover:border-[#111] transition-colors"
               >
-                ← Zurück
+                ← Vorige
               </Link>
             )}
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
@@ -227,7 +227,7 @@ export default async function CategoryPage({
               <Link href={`/categories/${slug}?sort=${sort}&page=${page + 1}`}
                 className="border border-[#E0DFDB] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#444] hover:border-[#111] transition-colors"
               >
-                Weiter →
+                Volgende →
               </Link>
             )}
           </div>
