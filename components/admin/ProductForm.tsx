@@ -104,19 +104,27 @@ function ProductFormContent({ product, categories }: ProductFormProps) {
     if (!slugManual) setSlug(slugify(val))
   }
 
-  // ── File upload ─────────────────────────────────────────────────────────────
+  // ── File upload (direct to Cloudinary — bypasses Vercel 4.5MB limit) ────────
   const uploadFile = useCallback(async (file: File) => {
     setUploading(true)
     try {
+      const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+      const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+      if (!cloudName || !uploadPreset) throw new Error('Cloudinary is not configured.')
       const fd = new FormData()
       fd.append('file', file)
-      const res = await fetch('/api/admin/upload', { method: 'POST', body: fd })
+      fd.append('upload_preset', uploadPreset)
+      fd.append('folder', 'mantrasports/products')
+      const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+        method: 'POST',
+        body: fd,
+      })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error ?? 'Upload failed')
+      if (!res.ok) throw new Error(data.error?.message ?? 'Upload failed')
       setImages((prev) => [
         ...prev,
         {
-          url: data.url as string,
+          url: data.secure_url as string,
           altText: name || '',
           isPrimary: prev.length === 0,
           sortOrder: prev.length,
@@ -302,7 +310,7 @@ function ProductFormContent({ product, categories }: ProductFormProps) {
                 className="flex items-center gap-2 rounded border border-dashed border-neutral-300 px-4 py-3 text-sm text-neutral-600 transition-colors hover:border-brand-400 hover:text-brand-600 disabled:opacity-50"
               >
                 <Upload className="h-4 w-4" />
-                {uploading ? 'Uploading…' : 'Upload images (JPG, PNG, WebP — max 5 MB each)'}
+                {uploading ? 'Uploading…' : 'Upload images (JPG, PNG, WebP — max 10 MB each)'}
               </button>
             </div>
 

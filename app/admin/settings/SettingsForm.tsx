@@ -15,11 +15,19 @@ function HeroImageField({ currentUrl, disabled }: { currentUrl: string; disabled
     if (!file) return
     setUploading(true)
     try {
+      const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+      const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+      if (!cloudName || !uploadPreset) throw new Error('Cloudinary is not configured.')
       const fd = new FormData()
       fd.append('file', file)
-      const res = await fetch('/api/admin/upload', { method: 'POST', body: fd })
+      fd.append('upload_preset', uploadPreset)
+      fd.append('folder', 'mantrasports/hero')
+      const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+        method: 'POST',
+        body: fd,
+      })
       const data = await res.json()
-      if (res.ok && data.url) setUrl(data.url)
+      if (res.ok && data.secure_url) setUrl(data.secure_url)
     } finally {
       setUploading(false)
       if (e.target) e.target.value = ''
