@@ -29,9 +29,10 @@ function PinterestIcon({ className }: { className?: string }) {
   )
 }
 
-export function Footer() {
+export function Footer({ contactEmail }: { contactEmail?: string }) {
   const [logoError, setLogoError] = useState(false)
   const currentYear = new Date().getFullYear()
+  const email = contactEmail ?? SITE_CONFIG.contact.email
 
   return (
     <footer style={{ background: '#111111', color: '#E0DFDB' }} aria-label="Paginavoet">
@@ -123,14 +124,14 @@ export function Footer() {
 
           {/* Contact Email */}
           <a
-            href={`mailto:${SITE_CONFIG.contact.email}`}
+            href={`mailto:${email}`}
             className="flex items-center gap-2 text-[13px] transition-colors"
             style={{ color: '#A0A0A0' }}
             onMouseEnter={(e) => { e.currentTarget.style.color = '#e85d1a' }}
             onMouseLeave={(e) => { e.currentTarget.style.color = '#A0A0A0' }}
           >
             <Mail className="h-4 w-4" aria-hidden="true" />
-            {SITE_CONFIG.contact.email}
+            {email}
           </a>
         </div>
 

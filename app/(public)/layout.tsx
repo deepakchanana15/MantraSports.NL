@@ -2,13 +2,22 @@ import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { WhatsAppButton } from '@/components/layout/WhatsAppButton'
 import { CookieBanner } from '@/components/layout/CookieBanner'
+import { prisma } from '@/lib/db/prisma'
 
-export default function PublicLayout({ children }: { children: React.ReactNode }) {
+export default async function PublicLayout({ children }: { children: React.ReactNode }) {
+  let contactEmail: string | undefined
+  try {
+    const setting = await prisma.siteSetting.findUnique({ where: { key: 'contact_email' } })
+    if (setting?.value) contactEmail = setting.value
+  } catch {
+    // fall through to default
+  }
+
   return (
     <>
-      {/* Barrierefreiheit: Zum Hauptinhalt springen */}
+      {/* Naar hoofdinhoud springen */}
       <a href="#main-content" className="skip-link">
-        Zum Hauptinhalt springen
+        Naar hoofdinhoud springen
       </a>
 
       <Navbar />
@@ -17,7 +26,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
         {children}
       </main>
 
-      <Footer />
+      <Footer contactEmail={contactEmail} />
 
       {/* Floating WhatsApp CTA — visible across all public pages */}
       <WhatsAppButton />
