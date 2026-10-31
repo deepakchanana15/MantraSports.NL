@@ -8,6 +8,7 @@
  *  3. Product categories
  */
 
+import 'dotenv/config'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 import { DEFAULT_SITE_SETTINGS, DEFAULT_CATEGORIES } from '../lib/config/site'
