@@ -213,6 +213,16 @@ img, video {
 .prose ul, .prose ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
 .prose li { color: #333333; margin-bottom: 0.5rem; }
 .prose blockquote { border-left: 3px solid #e85d1a; padding-left: 1rem; color: #6B6B6B; font-style: italic; }
+.prose h2 { font-size: 1.5rem; line-height: 1.2; margin: 2.5rem 0 1rem; }
+.prose h3 { font-size: 1.125rem; line-height: 1.3; margin: 1.75rem 0 0.75rem; }
+.prose > :first-child { margin-top: 0; }
+.prose ul { list-style: disc; }
+.prose ol { list-style: decimal; }
+.prose strong { color: #111111; }
+.prose table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 14px; }
+.prose th, .prose td { border: 1px solid #E0DFDB; padding: 8px 12px; text-align: left; color: #333333; }
+.prose th { background: #F8F7F4; font-weight: 600; color: #111111; }
+.prose .table-wrap { overflow-x: auto; }
 
 /* ── Admin Tiptap ─────────────────────────────────────────────── */
 .tiptap-editor .ProseMirror { outline: none; min-height: 300px; padding: 1rem; }

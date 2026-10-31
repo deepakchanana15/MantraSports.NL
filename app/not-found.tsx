@@ -2,8 +2,9 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: '404 — Pagina niet gevonden | Mantra Sports NL',
+  title: { absolute: '404 — Pagina niet gevonden | Mantra Sports NL' },
   robots: { index: false },
+  alternates: { canonical: null },
 }
 
 export default function NotFound() {

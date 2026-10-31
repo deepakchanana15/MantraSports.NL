@@ -6,7 +6,7 @@ import { prisma } from '@/lib/db/prisma'
 import { formatPrice, calculateDiscount } from '@/lib/utils/format'
 import { ImageGallery } from '@/components/shop/ImageGallery'
 import { ProductCard } from '@/components/shop/ProductCard'
-import { getProductWhatsAppUrl } from '@/lib/config/site'
+import { getProductWhatsAppUrl, categoryNameNl } from '@/lib/config/site'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     })
     if (!p) return {}
     return {
-      title: p.metaTitle ?? p.name,
+      title: p.metaTitle?.includes('Mantra Sports') ? { absolute: p.metaTitle } : (p.metaTitle ?? p.name),
       description: p.metaDescription ?? p.description?.slice(0, 160) ?? undefined,
     }
   } catch {
@@ -28,9 +28,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const STOCK_INFO: Record<string, { label: string; icon: typeof Check; cls: string }> = {
-  IN_STOCK:     { label: 'Auf Lager',       icon: Check,    cls: 'text-green-600' },
-  OUT_OF_STOCK: { label: 'Nicht lieferbar', icon: PackageX, cls: 'text-red-500' },
-  ON_REQUEST:   { label: 'Auf Anfrage',     icon: Clock,    cls: 'text-orange-500' },
+  IN_STOCK:     { label: 'Op voorraad',     icon: Check,    cls: 'text-green-600' },
+  OUT_OF_STOCK: { label: 'Niet leverbaar',  icon: PackageX, cls: 'text-red-500' },
+  ON_REQUEST:   { label: 'Op aanvraag',     icon: Clock,    cls: 'text-orange-500' },
 }
 
 export default async function ProductDetailPage({ params }: Props) {
@@ -77,14 +77,14 @@ export default async function ProductDetailPage({ params }: Props) {
     : []
 
   const whatsappUrl = getProductWhatsAppUrl(product.name)
-  const contactUrl = `/kontakt?produkt=${product.slug}&typ=angebot`
+  const contactUrl = `/contact?product=${encodeURIComponent(product.slug)}`
 
   return (
     <>
       <div style={{ maxWidth: 1440, margin: '0 auto', padding: '40px 60px 80px' }}>
         {/* Breadcrumb */}
         <nav className="mb-8 flex items-center gap-1.5 text-xs text-[#999]">
-          <Link href="/" className="hover:text-[#E85D1A] transition-colors">Startseite</Link>
+          <Link href="/" className="hover:text-[#E85D1A] transition-colors">Startpagina</Link>
           <span>/</span>
           <Link href="/shop" className="hover:text-[#E85D1A] transition-colors">Shop</Link>
           {product.category && (
@@ -94,7 +94,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 href={`/categories/${product.category.slug}`}
                 className="hover:text-[#E85D1A] transition-colors"
               >
-                {product.category.name}
+                {categoryNameNl(product.category.slug, product.category.name)}
               </Link>
             </>
           )}
@@ -129,7 +129,7 @@ export default async function ProductDetailPage({ params }: Props) {
                   marginBottom: 8,
                 }}
               >
-                {product.category.name}
+                {categoryNameNl(product.category.slug, product.category.name)}
               </p>
             )}
 
@@ -170,7 +170,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 </span>
               ) : (
                 <span style={{ fontFamily: 'var(--font-oswald)', fontSize: 18, fontWeight: 600, color: '#999' }}>
-                  Preis auf Anfrage
+                  Prijs op aanvraag
                 </span>
               )}
             </div>
@@ -196,7 +196,7 @@ export default async function ProductDetailPage({ params }: Props) {
             {features.length > 0 && (
               <div className="mb-6">
                 <h3 className="mb-3 font-display text-xs font-bold uppercase tracking-[0.15em] text-[#111]">
-                  Eigenschaften
+                  Kenmerken
                 </h3>
                 <ul className="space-y-1.5">
                   {features.map((f, i) => (
@@ -235,7 +235,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 }}
               >
                 <MessageCircle size={16} />
-                Auf WhatsApp anfragen
+                Aanvragen via WhatsApp
               </a>
 
               <Link
@@ -258,12 +258,12 @@ export default async function ProductDetailPage({ params }: Props) {
                 className="hover:bg-[#cc4e14] transition-colors"
               >
                 <Mail size={16} />
-                Angebot anfordern
+                Offerte aanvragen
               </Link>
             </div>
 
             <p className="mt-3 text-center text-xs text-[#999]">
-              Wir antworten in der Regel innerhalb von 24 Stunden.
+              We reageren doorgaans binnen 24 uur.
             </p>
 
             {/* Tags */}
@@ -297,7 +297,7 @@ export default async function ProductDetailPage({ params }: Props) {
                   color: '#111',
                 }}
               >
-                Ähnliche Produkte
+                Vergelijkbare producten
               </h2>
             </div>
             <div

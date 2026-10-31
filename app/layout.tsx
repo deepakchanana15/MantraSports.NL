@@ -21,6 +21,7 @@ const oswald = Oswald({
 // ── Default Metadata ───────────────────────────────────────────────────────
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
+  alternates: { canonical: './' },
   title: {
     default: SITE_CONFIG.seo.defaultTitle,
     template: SITE_CONFIG.seo.titleTemplate,

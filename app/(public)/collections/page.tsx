@@ -26,9 +26,9 @@ export default async function CollectionsPage() {
       <section style={{ borderBottom: '1px solid #E0DFDB' }}>
         <div style={{ padding: '48px 60px 32px', maxWidth: 1440, margin: '0 auto' }}>
           <nav className="mb-4 flex items-center gap-1.5 text-xs text-[#999]">
-            <Link href="/" className="hover:text-[#E85D1A] transition-colors">Startseite</Link>
+            <Link href="/" className="hover:text-[#E85D1A] transition-colors">Startpagina</Link>
             <span>/</span>
-            <span className="text-[#111]">Kollektionen</span>
+            <span className="text-[#111]">Collecties</span>
           </nav>
           <h1
             style={{
@@ -42,10 +42,10 @@ export default async function CollectionsPage() {
               marginBottom: 8,
             }}
           >
-            Kollektionen
+            Collecties
           </h1>
           <p className="text-sm text-[#666]">
-            Handverlesene Auswahl für jede Spielebene und jeden Stil.
+            Zorgvuldig samengestelde selecties voor elk speelniveau en elke stijl.
           </p>
         </div>
       </section>
@@ -54,14 +54,14 @@ export default async function CollectionsPage() {
       <section style={{ padding: '48px 60px 80px', maxWidth: 1440, margin: '0 auto' }}>
         {dbError && (
           <div className="mb-8 rounded border border-amber-200 bg-amber-50 p-4 text-sm text-amber-700">
-            Datenbankverbindung nicht verfügbar. Kollektionen werden angezeigt, sobald die Datenbank eingerichtet ist.
+            Collecties kunnen momenteel niet worden geladen. Probeer het later opnieuw.
           </div>
         )}
 
         {collections.length === 0 && !dbError ? (
           <div className="py-24 text-center">
-            <p className="font-display text-xl font-bold uppercase text-[#111]">Keine Kollektionen vorhanden</p>
-            <p className="mt-2 text-sm text-[#999]">Bald verfügbar — schauen Sie regelmäßig vorbei.</p>
+            <p className="font-display text-xl font-bold uppercase text-[#111]">Nog geen collecties</p>
+            <p className="mt-2 text-sm text-[#999]">Binnenkort beschikbaar — kom snel terug.</p>
             <Link
               href="/shop"
               className="mt-6 inline-block border border-[#111] px-6 py-2.5 font-display text-xs font-bold uppercase tracking-widest text-[#111] hover:bg-[#111] hover:text-white transition-colors"
@@ -132,7 +132,7 @@ function CollectionCard({ collection }: { collection: any }) {
         {/* Hover CTA */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <span className="border border-white px-6 py-2.5 font-display text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm" style={{ background: 'rgba(0,0,0,0.3)' }}>
-            Kollektion entdecken
+            Collectie bekijken
           </span>
         </div>
       </div>
@@ -157,7 +157,7 @@ function CollectionCard({ collection }: { collection: any }) {
         {collection.description && (
           <p className="text-sm leading-relaxed text-[#666] line-clamp-2">{collection.description}</p>
         )}
-        <p className="mt-2 text-xs text-[#999]">{count} {count === 1 ? 'Produkt' : 'Produkte'}</p>
+        <p className="mt-2 text-xs text-[#999]">{count} {count === 1 ? 'product' : 'producten'}</p>
       </div>
     </Link>
   )

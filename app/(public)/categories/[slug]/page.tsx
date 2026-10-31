@@ -15,9 +15,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     })
     if (!cat) return {}
     const nlName = NL_NAMES[slug] ?? cat.name
+    // DB meta fields for categories are English seed data — build Dutch metadata here
     return {
-      title: cat.metaTitle ?? `${nlName} — Mantra Sports NL`,
-      description: cat.metaDescription ?? cat.description?.slice(0, 160) ?? undefined,
+      title: `${nlName} kopen`,
+      description: `Koop ${nlName.toLowerCase()} bij Mantra Sports NL. Premium cricketuitrusting met persoonlijk advies — ook groothandel voor clubs en scholen.`,
     }
   } catch {
     return {}
@@ -28,8 +29,7 @@ const NL_NAMES: Record<string, string> = {
   'cricket-bats':    'Cricketbats',
   'balls':           'Ballen',
   'protective-gear': 'Beschermende Uitrusting',
-  'accessories':     'Accessoires & Handschoenen',
-  'sports-bags':     'Sporttassen',
+  'accessories':     'Accessoires',
   'teamwear':        'Teamkleding',
   'custom-apparel':  'Aangepaste Kleding',
 }

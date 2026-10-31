@@ -3,20 +3,20 @@ import Link from 'next/link'
 import { SlidersHorizontal } from 'lucide-react'
 import { prisma } from '@/lib/db/prisma'
 import { ProductCard } from '@/components/shop/ProductCard'
-import { DEFAULT_CATEGORIES } from '@/lib/config/site'
+import { DEFAULT_CATEGORIES, categoryNameNl } from '@/lib/config/site'
 
 export const metadata: Metadata = {
-  title: 'Shop — Alle Producten',
+  title: 'Shop — Alle producten',
   description: 'Ontdek ons volledige assortiment premium cricketuitrusting bij Mantra Sports Nederland.',
 }
 
 const PER_PAGE = 24
 
 const SORT_OPTIONS = [
-  { value: 'newest',     label: 'Neueste' },
-  { value: 'featured',   label: 'Empfohlen' },
-  { value: 'price_asc',  label: 'Preis aufsteigend' },
-  { value: 'price_desc', label: 'Preis absteigend' },
+  { value: 'newest',     label: 'Nieuwste' },
+  { value: 'featured',   label: 'Aanbevolen' },
+  { value: 'price_asc',  label: 'Prijs oplopend' },
+  { value: 'price_desc', label: 'Prijs aflopend' },
 ]
 
 type SearchParams = { category?: string; sort?: string; q?: string; page?: string }
@@ -74,9 +74,10 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
   }
 
   const totalPages = Math.ceil(total / PER_PAGE)
-  const activeLabel =
+  const activeName =
     categories.find((c) => c.slug === activeCategory)?.name ??
     DEFAULT_CATEGORIES.find((c) => c.slug === activeCategory)?.name
+  const activeLabel = activeName ? categoryNameNl(activeCategory, activeName) : undefined
 
   return (
     <>
@@ -85,7 +86,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
         <div style={{ padding: '48px 60px 32px', maxWidth: 1440, margin: '0 auto' }}>
           {/* Breadcrumb */}
           <nav className="mb-4 flex items-center gap-1.5 text-xs text-[#999]">
-            <Link href="/" className="hover:text-[#E85D1A] transition-colors">Startseite</Link>
+            <Link href="/" className="hover:text-[#E85D1A] transition-colors">Startpagina</Link>
             <span>/</span>
             <span className="text-[#111]">Shop</span>
             {activeLabel && (
@@ -110,10 +111,10 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
                   margin: 0,
                 }}
               >
-                {activeLabel ?? 'Alle Produkte'}
+                {activeLabel ?? 'Alle producten'}
               </h1>
               {!dbError && (
-                <p className="mt-2 text-sm text-[#999]">{total} {total === 1 ? 'Produkt' : 'Produkte'}</p>
+                <p className="mt-2 text-sm text-[#999]">{total} {total === 1 ? 'product' : 'producten'}</p>
               )}
             </div>
           </div>
@@ -150,7 +151,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
                       : 'border-transparent text-[#666] hover:text-[#111]'
                   }`}
                 >
-                  {cat.name}
+                  {categoryNameNl(cat.slug, cat.name)}
                 </Link>
               ))}
             </div>
@@ -163,7 +164,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
                   name="q"
                   type="search"
                   defaultValue={q}
-                  placeholder="Suchen…"
+                  placeholder="Zoeken…"
                   className="w-40 rounded border border-[#E0DFDB] bg-white px-3 py-1.5 text-xs outline-none focus:border-[#E85D1A]"
                 />
                 {activeCategory && <input type="hidden" name="category" value={activeCategory} />}
@@ -184,7 +185,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
                 type="submit"
                 className="flex items-center gap-1.5 rounded border border-[#E0DFDB] bg-white px-3 py-1.5 text-xs font-semibold text-[#444] hover:border-[#E85D1A] hover:text-[#E85D1A]"
               >
-                <SlidersHorizontal className="h-3 w-3" /> Filtern
+                <SlidersHorizontal className="h-3 w-3" /> Filteren
               </button>
             </div>
           </form>
@@ -195,7 +196,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
       <section style={{ padding: '48px 60px 80px', maxWidth: 1440, margin: '0 auto' }}>
         {dbError && (
           <div className="mb-8 rounded border border-amber-200 bg-amber-50 p-4 text-sm text-amber-700">
-            Datenbankverbindung nicht verfügbar. Produkte werden angezeigt, sobald die Datenbank eingerichtet ist.
+            Producten kunnen momenteel niet worden geladen. Probeer het later opnieuw.
           </div>
         )}
 
@@ -212,17 +213,17 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
                 marginBottom: 8,
               }}
             >
-              Keine Produkte gefunden
+              Geen producten gevonden
             </p>
             <p className="text-sm text-[#999]">
-              {q ? `Keine Ergebnisse für „${q}". Versuchen Sie eine andere Suche.` : 'Es sind noch keine Produkte in dieser Kategorie vorhanden.'}
+              {q ? `Geen resultaten voor „${q}”. Probeer een andere zoekterm.` : 'Er zijn nog geen producten in deze categorie.'}
             </p>
             {(q || activeCategory) && (
               <Link
                 href="/shop"
                 className="mt-6 inline-block border border-[#111] px-6 py-2.5 font-display text-xs font-bold uppercase tracking-widest text-[#111] hover:bg-[#111] hover:text-white transition-colors"
               >
-                Alle Produkte anzeigen
+                Alle producten bekijken
               </Link>
             )}
           </div>
@@ -248,7 +249,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
                 href={buildUrl({ category: activeCategory, sort, q, page: page - 1 })}
                 className="border border-[#E0DFDB] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#444] hover:border-[#111] hover:text-[#111] transition-colors"
               >
-                ← Zurück
+                ← Vorige
               </Link>
             )}
             {Array.from({ length: totalPages }, (_, i) => i + 1)
@@ -275,7 +276,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
                 href={buildUrl({ category: activeCategory, sort, q, page: page + 1 })}
                 className="border border-[#E0DFDB] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#444] hover:border-[#111] hover:text-[#111] transition-colors"
               >
-                Weiter →
+                Volgende →
               </Link>
             )}
           </div>

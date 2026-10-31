@@ -237,7 +237,7 @@ export function Footer({ contactEmail }: { contactEmail?: string }) {
             {[
               { label: 'Privacybeleid', href: '/privacy-policy' },
               { label: 'Algemene Voorwaarden', href: '/terms-and-conditions' },
-              { label: 'Impressum', href: '/impressum' },
+              { label: 'Bedrijfsgegevens', href: '/company-information' },
             ].map((item) => (
               <Link
                 key={item.label}

@@ -7,7 +7,7 @@ import { submitEnquiry } from '@/lib/actions/enquiries'
 const inputCls =
   'w-full rounded-[2px] border border-neutral-300 bg-white px-4 py-3 text-[14px] text-neutral-900 outline-none transition-colors focus:border-[#e85d1a] focus:ring-1 focus:ring-[#e85d1a] placeholder:text-neutral-400'
 
-export function ContactForm() {
+export function ContactForm({ defaultMessage }: { defaultMessage?: string }) {
   const [submitting, setSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
@@ -124,6 +124,7 @@ export function ContactForm() {
           name="message"
           required
           rows={5}
+          defaultValue={defaultMessage}
           placeholder="Hoe kunnen we je helpen? Beschrijf je aanvraag zo gedetailleerd mogelijk."
           className={inputCls}
         />

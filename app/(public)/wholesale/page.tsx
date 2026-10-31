@@ -4,7 +4,7 @@ import { Award, Package, Truck, Headphones, ChevronRight } from 'lucide-react'
 import { WholesaleForm } from './WholesaleForm'
 
 export const metadata: Metadata = {
-  title: 'Groothandel & B2B — Mantra Sports NL',
+  title: 'Groothandel & B2B',
   description:
     'Groothandelsaanvragen voor clubs, scholen en retailers. Premium cricketuitrusting tegen voordelige B2B-prijzen — EU-wijd geleverd.',
 }

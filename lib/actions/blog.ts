@@ -32,6 +32,7 @@ export async function createBlogPost(formData: FormData): Promise<{ id: string }
 
   revalidatePath('/admin/blog')
   revalidatePath('/blog')
+  revalidatePath('/blog/[slug]', 'page')
   return { id: post.id }
 }
 
@@ -67,6 +68,7 @@ export async function updateBlogPost(id: string, formData: FormData): Promise<vo
 
   revalidatePath('/admin/blog')
   revalidatePath('/blog')
+  revalidatePath('/blog/[slug]', 'page')
 }
 
 export async function deleteBlogPost(id: string): Promise<void> {
@@ -76,4 +78,5 @@ export async function deleteBlogPost(id: string): Promise<void> {
   await prisma.blogPost.delete({ where: { id } })
   revalidatePath('/admin/blog')
   revalidatePath('/blog')
+  revalidatePath('/blog/[slug]', 'page')
 }

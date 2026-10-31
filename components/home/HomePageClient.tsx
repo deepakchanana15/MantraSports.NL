@@ -60,17 +60,6 @@ interface Props {
 
 // ── Static data ───────────────────────────────────────────────────────────────
 
-const PLACEHOLDER_PRODUCTS = [
-  { id: '1', name: 'Magnitude Legend Bat', brand: 'Magnitude Serie', price: 1299, comparePrice: 1699, badge: 'BESPAAR 24%', badgeColor: '#e85d1a', stars: 5, reviews: 12, href: '/shop/magnitude-legend', emoji: '🏏', tab: 'neue' },
-  { id: '2', name: 'Cobra Ultimate Bat', brand: 'Cobra Serie', price: 388, comparePrice: 550, badge: 'BESTSELLER', badgeColor: '#111111', stars: 5, reviews: 34, href: '/shop/cobra-ultimate', emoji: '🏏', tab: 'bestseller' },
-  { id: '3', name: 'Raptor Batting Handschoenen', brand: 'Raptor Serie', price: 188, comparePrice: 230, badge: 'NIEUW', badgeColor: '#059669', stars: 4, reviews: 8, href: '/shop/raptor-gloves', emoji: '🧤', tab: 'neue' },
-  { id: '4', name: 'Magnitude Batting Pads', brand: 'Magnitude Serie', price: 138, comparePrice: 190, badge: 'POPULAIR', badgeColor: '#7c3aed', stars: 5, reviews: 21, href: '/shop/magnitude-pads', emoji: '🛡️', tab: 'bestseller' },
-  { id: '5', name: 'Engels Wilgenhout Pro', brand: 'Premium Serie', price: 1899, comparePrice: null, badge: 'ENGLISH WILLOW', badgeColor: '#92400e', stars: 5, reviews: 5, href: '/shop/english-willow-pro', emoji: '🏏', tab: 'willow' },
-  { id: '6', name: 'Heritage Willow Reserve', brand: 'Heritage Serie', price: 2499, comparePrice: null, badge: 'GELIMITEERD', badgeColor: '#be185d', stars: 5, reviews: 3, href: '/shop/heritage-willow', emoji: '🏏', tab: 'willow' },
-  { id: '7', name: 'Defender Helm', brand: 'Defender Serie', price: 149, comparePrice: 199, badge: 'SALE', badgeColor: '#e85d1a', stars: 4, reviews: 16, href: '/shop/defender-helmet', emoji: '⛑️', tab: 'sale' },
-  { id: '8', name: 'Mantra Cricketbal 6-Pack', brand: 'Match Serie', price: 79, comparePrice: 110, badge: 'SALE', badgeColor: '#e85d1a', stars: 4, reviews: 44, href: '/shop/cricket-balls-6pack', emoji: '🔴', tab: 'sale' },
-]
-
 const TABS = [
   { key: 'neue', label: 'Nieuwe Arrivals' },
   { key: 'bestseller', label: 'Bestsellers' },
@@ -82,8 +71,8 @@ const CATEGORIES = [
   { name: 'Cricketbats', slug: 'cricket-bats', emoji: '🏏', href: '/categories/cricket-bats' },
   { name: 'Ballen', slug: 'balls', emoji: '🔴', href: '/categories/balls' },
   { name: 'Beschermende Uitrusting', slug: 'protective-gear', emoji: '🛡️', href: '/categories/protective-gear' },
-  { name: 'Handschoenen', slug: 'accessories', emoji: '🧤', href: '/categories/accessories' },
-  { name: 'Sporttassen', slug: 'sports-bags', emoji: '🎒', href: '/categories/sports-bags' },
+  { name: 'Accessoires', slug: 'accessories', emoji: '🎒', href: '/categories/accessories' },
+  { name: 'Teamkleding', slug: 'teamwear', emoji: '🎽', href: '/categories/teamwear' },
   { name: 'Aangepaste Kleding', slug: 'custom-apparel', emoji: '👕', href: '/categories/custom-apparel' },
 ]
 
@@ -158,23 +147,6 @@ function dbToCard(p: ProductDisplay, tab: string): CardProduct {
     href: `/shop/${p.slug}`,
     emoji: '🏏',
     imageUrl: p.imageUrl,
-  }
-}
-
-function placeholderToCard(p: typeof PLACEHOLDER_PRODUCTS[0]): CardProduct {
-  return {
-    id: p.id,
-    name: p.name,
-    brand: p.brand,
-    price: p.price,
-    comparePrice: p.comparePrice,
-    badge: p.badge,
-    badgeColor: p.badgeColor,
-    stars: p.stars,
-    reviews: p.reviews,
-    href: p.href,
-    emoji: p.emoji,
-    imageUrl: null,
   }
 }
 
@@ -272,12 +244,15 @@ export function HomePageClient({ heroImageUrl, heroProduct, willowImageUrl, cate
     catCountBySlug[cat.slug] = cat.productCount
   }
 
-  // Resolve products for active tab — use DB data if available, fall back to placeholders
+  // Resolve products for active tab — real DB products only
   function getTabCards(tab: string): CardProduct[] {
     const dbList = tabProducts[tab as keyof typeof tabProducts]
-    if (dbList && dbList.length > 0) return dbList.map((p) => dbToCard(p, tab))
-    return PLACEHOLDER_PRODUCTS.filter((p) => p.tab === tab).map(placeholderToCard)
+    return dbList ? dbList.map((p) => dbToCard(p, tab)) : []
   }
+
+  // Hide tabs without products (e.g. no items on sale); show all if none have any
+  const tabsWithProducts = TABS.filter((t) => getTabCards(t.key).length > 0)
+  const visibleTabs = tabsWithProducts.length > 0 ? tabsWithProducts : TABS
 
   const filteredProducts = getTabCards(activeTab)
 
@@ -467,7 +442,7 @@ export function HomePageClient({ heroImageUrl, heroProduct, willowImageUrl, cate
         </div>
 
         <div className="mb-8 flex gap-0" role="tablist" aria-label="Productcategorieën" style={{ borderBottom: '1px solid #E0DFDB' }}>
-          {TABS.map((tab) => (
+          {visibleTabs.map((tab) => (
             <button key={tab.key} type="button" role="tab" aria-selected={activeTab === tab.key} onClick={() => setActiveTab(tab.key)}
               className="font-display text-[13px] font-medium uppercase tracking-[0.06em] transition-colors"
               style={{ padding: '14px 24px', color: activeTab === tab.key ? '#e85d1a' : '#6B6B6B', borderTop: 'none', borderLeft: 'none', borderRight: 'none', borderBottom: activeTab === tab.key ? '2px solid #e85d1a' : '2px solid transparent', background: 'none', cursor: 'pointer' }}>

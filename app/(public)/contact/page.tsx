@@ -8,12 +8,14 @@ import { SITE_CONFIG } from '@/lib/config/site'
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: 'Contact — Mantra Sports NL',
+  title: 'Contact',
   description:
     'Neem contact op met Mantra Sports Nederland. Productvragen, groothandel, ondersteuning — we helpen je graag verder.',
 }
 
-export default async function ContactPage() {
+export default async function ContactPage({ searchParams }: { searchParams: Promise<{ product?: string }> }) {
+  const { product: productSlug } = await searchParams
+
   // Load live contact details from settings if set
   let email: string = SITE_CONFIG.contact.email
   let phone: string = SITE_CONFIG.contact.phone
@@ -31,6 +33,17 @@ export default async function ContactPage() {
     if (map.whatsapp_number) whatsapp = map.whatsapp_number
   } catch {
     // fall through to defaults
+  }
+
+  // Quote request from a product page — prefill the message with the product name
+  let defaultMessage: string | undefined
+  if (productSlug) {
+    try {
+      const product = await prisma.product.findUnique({ where: { slug: productSlug, status: 'ACTIVE' }, select: { name: true } })
+      if (product) defaultMessage = `Ik wil graag een offerte ontvangen voor: ${product.name}`
+    } catch {
+      // ignore — form works without prefill
+    }
   }
 
   const hasPhone = phone && phone !== 'TO_BE_PROVIDED'
@@ -237,7 +250,7 @@ export default async function ContactPage() {
 
           {/* Right — form */}
           <div>
-            <ContactForm />
+            <ContactForm defaultMessage={defaultMessage} />
           </div>
         </div>
       </div>

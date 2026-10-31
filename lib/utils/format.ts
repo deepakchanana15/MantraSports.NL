@@ -9,7 +9,7 @@ export function formatPrice(
   currency: string = 'EUR',
   locale: string = 'nl-NL'
 ): string {
-  if (amount === null || amount === undefined) return 'Price on Request'
+  if (amount === null || amount === undefined) return 'Prijs op aanvraag'
 
   return new Intl.NumberFormat(locale, {
     style: 'currency',

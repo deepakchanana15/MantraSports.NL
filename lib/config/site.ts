@@ -6,17 +6,31 @@ export const SITE_CONFIG = {
   tagline: 'Speel zonder grenzen.',
   description:
     'Mantra Sports NL — Premium cricketbats, beschermende uitrusting, ballen, teamkleding en accessoires. Gebouwd voor prestaties. Wereldwijd vertrouwd.',
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://mantrasports.nl',
+  // Canonical production origin — the apex domain 308-redirects here, so all
+  // absolute URLs (metadataBase, canonicals, sitemap, robots, JSON-LD) use this host.
+  url: 'https://www.mantrasports.nl',
   locale: 'nl-NL',
   region: 'nl',
   currency: 'EUR',
   currencySymbol: '€',
 
   contact: {
-    email: process.env.EMAIL_TO ?? 'info@mantrasports.nl',
-    phone: 'TO_BE_PROVIDED',
-    address: 'TO_BE_PROVIDED',
+    email: 'info@mantrasports.nl',
+    phone: '+61 46 624 2222',
+    address: 'Unit 2, 5 Ford Court, Newnham TAS 7248, Australië',
     whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? 'TO_BE_PROVIDED',
+  },
+
+  // Operating company (parent company, Australia)
+  company: {
+    legalName: 'Mantra Corporation Pty Ltd',
+    abn: '13 675 757 838',
+    street: 'Unit 2, 5 Ford Court',
+    postalCode: '7248',
+    city: 'Newnham, Launceston',
+    region: 'Tasmanië',
+    country: 'Australië',
+    countryCode: 'AU',
   },
 
   social: {
@@ -141,6 +155,20 @@ export const DEFAULT_CATEGORIES = [
   { name: 'Custom Apparel', slug: 'custom-apparel', sortOrder: 6 },
 ] as const
 
+// Dutch display names — category names in the DB are stored in English
+export const CATEGORY_NAMES_NL: Record<string, string> = {
+  'cricket-bats':    'Cricketbats',
+  'balls':           'Ballen',
+  'protective-gear': 'Beschermende Uitrusting',
+  'accessories':     'Accessoires',
+  'teamwear':        'Teamkleding',
+  'custom-apparel':  'Aangepaste Kleding',
+}
+
+export function categoryNameNl(slug: string, fallback: string): string {
+  return CATEGORY_NAMES_NL[slug] ?? fallback
+}
+
 // ─── Default Site Settings ────────────────────────────────────────────────────
 
 export const DEFAULT_SITE_SETTINGS = {
@@ -149,8 +177,8 @@ export const DEFAULT_SITE_SETTINGS = {
   site_tagline: 'Speel zonder grenzen.',
   site_description: SITE_CONFIG.description,
   contact_email: 'info@mantrasports.nl',
-  contact_phone: 'TO_BE_PROVIDED',
-  contact_address: 'TO_BE_PROVIDED',
+  contact_phone: SITE_CONFIG.contact.phone,
+  contact_address: SITE_CONFIG.contact.address,
   whatsapp_number: 'TO_BE_PROVIDED',
   social_instagram: '',
   social_facebook: '',

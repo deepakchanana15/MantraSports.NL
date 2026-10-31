@@ -66,7 +66,7 @@ export async function submitEnquiry(formData: FormData): Promise<{ ok: boolean; 
     const quantity = formData.get('quantity') ? parseInt(formData.get('quantity') as string, 10) : null
     const message = (formData.get('message') as string) || null
 
-    if (!name || !email) return { ok: false, error: 'Name und E-Mail sind erforderlich.' }
+    if (!name || !email) return { ok: false, error: 'Naam en e-mailadres zijn verplicht.' }
 
     const hdrs = await headers()
     const ip = hdrs.get('x-forwarded-for')?.split(',')[0] ?? hdrs.get('x-real-ip') ?? null
@@ -90,7 +90,7 @@ export async function submitEnquiry(formData: FormData): Promise<{ ok: boolean; 
     revalidatePath('/admin/enquiries')
     return { ok: true }
   } catch {
-    return { ok: false, error: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.' }
+    return { ok: false, error: 'Er is iets misgegaan. Probeer het opnieuw.' }
   }
 }
 

@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     })
     if (!col) return {}
     return {
-      title: col.metaTitle ?? `${col.name} — Kollektion`,
+      title: col.metaTitle?.includes('Mantra Sports') ? { absolute: col.metaTitle } : (col.metaTitle ?? `${col.name} — Collectie`),
       description: col.metaDescription ?? col.description?.slice(0, 160) ?? undefined,
     }
   } catch {
@@ -69,9 +69,9 @@ export default async function CollectionDetailPage({ params }: Props) {
         >
           <div style={{ padding: '0 60px 40px', maxWidth: 1440, width: '100%', margin: '0 auto' }}>
             <nav className="mb-3 flex items-center gap-1.5 text-xs text-white/60">
-              <Link href="/" className="hover:text-white transition-colors">Startseite</Link>
+              <Link href="/" className="hover:text-white transition-colors">Startpagina</Link>
               <span>/</span>
-              <Link href="/collections" className="hover:text-white transition-colors">Kollektionen</Link>
+              <Link href="/collections" className="hover:text-white transition-colors">Collecties</Link>
               <span>/</span>
               <span className="text-white">{collection.name}</span>
             </nav>
@@ -100,9 +100,9 @@ export default async function CollectionDetailPage({ params }: Props) {
         <section style={{ borderBottom: '1px solid #E0DFDB', background: '#111' }}>
           <div style={{ padding: '48px 60px 40px', maxWidth: 1440, margin: '0 auto' }}>
             <nav className="mb-4 flex items-center gap-1.5 text-xs text-white/40">
-              <Link href="/" className="hover:text-[#E85D1A] transition-colors">Startseite</Link>
+              <Link href="/" className="hover:text-[#E85D1A] transition-colors">Startpagina</Link>
               <span>/</span>
-              <Link href="/collections" className="hover:text-[#E85D1A] transition-colors">Kollektionen</Link>
+              <Link href="/collections" className="hover:text-[#E85D1A] transition-colors">Collecties</Link>
               <span>/</span>
               <span className="text-white/80">{collection.name}</span>
             </nav>
@@ -132,19 +132,19 @@ export default async function CollectionDetailPage({ params }: Props) {
       {/* Products */}
       <section style={{ padding: '48px 60px 80px', maxWidth: 1440, margin: '0 auto' }}>
         <div className="mb-8 flex items-center justify-between">
-          <p className="text-sm text-[#999]">{products.length} {products.length === 1 ? 'Produkt' : 'Produkte'}</p>
+          <p className="text-sm text-[#999]">{products.length} {products.length === 1 ? 'product' : 'producten'}</p>
           <Link
             href="/collections"
             className="text-xs font-semibold uppercase tracking-wider text-[#999] hover:text-[#E85D1A] transition-colors"
           >
-            ← Alle Kollektionen
+            ← Alle collecties
           </Link>
         </div>
 
         {products.length === 0 ? (
           <div className="py-24 text-center">
-            <p className="font-display text-xl font-bold uppercase text-[#111]">Noch keine Produkte</p>
-            <p className="mt-2 text-sm text-[#999]">Diese Kollektion wird demnächst mit Produkten befüllt.</p>
+            <p className="font-display text-xl font-bold uppercase text-[#111]">Nog geen producten</p>
+            <p className="mt-2 text-sm text-[#999]">Deze collectie wordt binnenkort gevuld met producten.</p>
             <Link
               href="/shop"
               className="mt-6 inline-block border border-[#111] px-6 py-2.5 font-display text-xs font-bold uppercase tracking-widest text-[#111] hover:bg-[#111] hover:text-white transition-colors"

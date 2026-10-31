@@ -4,7 +4,7 @@ import { HomePageClient } from '@/components/home/HomePageClient'
 import type { CategoryDisplay, ProductDisplay, HeroProduct } from '@/components/home/HomePageClient'
 
 export const metadata: Metadata = {
-  title: 'Mantra Sports NL — Premium Cricket Uitrusting',
+  title: { absolute: 'Mantra Sports NL — Premium Cricket Uitrusting' },
   description:
     'Premium cricketbats, beschermende uitrusting, teamkleding en accessoires bij Mantra Sports Nederland. Groothandel & B2B-aanvragen welkom.',
 }
@@ -124,7 +124,7 @@ export default async function HomePage() {
 
         // Magnitude Legend image for the English Willow dark section
         prisma.product.findFirst({
-          where: { slug: 'magnitude-legend' },
+          where: { slug: 'legenda-voor-magnitude' },
           select: { images: { where: { isPrimary: true }, take: 1, select: { url: true } } },
         }),
       ])

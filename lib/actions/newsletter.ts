@@ -7,7 +7,7 @@ export async function subscribeNewsletter(
 ): Promise<{ ok: boolean; error?: string }> {
   const trimmed = email.trim().toLowerCase()
   if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
-    return { ok: false, error: 'Bitte gib eine gültige E-Mail-Adresse ein.' }
+    return { ok: false, error: 'Vul een geldig e-mailadres in.' }
   }
 
   try {
@@ -18,6 +18,6 @@ export async function subscribeNewsletter(
     })
     return { ok: true }
   } catch {
-    return { ok: false, error: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.' }
+    return { ok: false, error: 'Er is iets misgegaan. Probeer het opnieuw.' }
   }
 }

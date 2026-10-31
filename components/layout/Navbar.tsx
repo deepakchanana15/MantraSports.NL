@@ -64,13 +64,13 @@ export function Navbar() {
         style={{ background: '#111111' }}
         className="py-[9px] px-4 text-center text-[12px] font-medium tracking-[0.08em] text-white"
       >
-        🏏 Kostenloser Versand ab €100 &nbsp;|&nbsp; Code{' '}
-        <strong>ERSTBESTELLUNG5</strong> für 5% Rabatt
+        🏏 Gratis verzending vanaf €100 &nbsp;|&nbsp; Code{' '}
+        <strong>ERSTBESTELLUNG5</strong> voor 5% korting
         <Link
           href="/shop"
           className="ml-2 text-[#e85d1a] hover:underline"
         >
-          Jetzt shoppen →
+          Nu shoppen →
         </Link>
       </div>
 
@@ -81,14 +81,14 @@ export function Navbar() {
       >
         <nav
           ref={navRef}
-          aria-label="Hauptnavigation"
+          aria-label="Hoofdnavigatie"
           className="mx-auto flex h-[72px] max-w-none items-center justify-between"
           style={{ padding: '0 60px' }}
         >
           {/* ── Logo ───────────────────────────────────────────────── */}
           <Link
             href="/"
-            aria-label={`${SITE_CONFIG.name} — Startseite`}
+            aria-label={`${SITE_CONFIG.name} — Startpagina`}
             className="flex shrink-0 items-center gap-3.5 text-decoration-none"
           >
             {logoError ? (
@@ -144,7 +144,7 @@ export function Navbar() {
               <input
                 name="q"
                 type="search"
-                placeholder="Produkte suchen…"
+                placeholder="Producten zoeken…"
                 className="w-[200px] rounded-[4px] border text-[13px] outline-none transition-colors"
                 style={{
                   background: '#F2F1EE',
@@ -164,7 +164,7 @@ export function Navbar() {
                   e.currentTarget.style.background = '#F2F1EE'
                   e.currentTarget.style.borderColor = '#E0DFDB'
                 }}
-                aria-label="Produkte suchen"
+                aria-label="Producten zoeken"
               />
             </form>
 
@@ -176,13 +176,13 @@ export function Navbar() {
               onMouseEnter={(e) => { e.currentTarget.style.background = '#c44b0f' }}
               onMouseLeave={(e) => { e.currentTarget.style.background = '#e85d1a' }}
             >
-              Anfrage stellen
+              Offerte aanvragen
             </Link>
 
             {/* Hamburger */}
             <button
               type="button"
-              aria-label={isMobileOpen ? 'Menü schließen' : 'Menü öffnen'}
+              aria-label={isMobileOpen ? 'Menu sluiten' : 'Menu openen'}
               aria-expanded={isMobileOpen}
               aria-controls="mobile-menu"
               onClick={() => setIsMobileOpen((prev) => !prev)}
@@ -254,7 +254,7 @@ export function Navbar() {
             className="block rounded-[2px] px-4 py-3 text-center font-display text-sm font-bold uppercase tracking-widest text-white"
             style={{ background: '#e85d1a' }}
           >
-            Anfrage stellen
+            Offerte aanvragen
           </Link>
         </div>
       </div>
