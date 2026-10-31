@@ -14,7 +14,6 @@ import {
   Package,
   ChevronRight,
   ArrowRight,
-  Quote,
 } from 'lucide-react'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -89,12 +88,6 @@ const WHY_ITEMS = [
   { icon: Package, title: 'Groothandel & B2B', text: 'Flexibele groothandelsprijzen voor clubs, scholen en dealers. Partnerschap dat schaalt.' },
   { icon: Truck, title: 'EU-wijde Verzending', text: 'Snelle levering naar alle EU-landen. Gratis verzending vanaf €100 bestelling.' },
   { icon: Headphones, title: 'Deskundig Advies', text: 'Ons expertteam helpt je de perfecte uitrusting te vinden voor jouw speelniveau.' },
-]
-
-const REVIEWS = [
-  { name: 'Rahul M.', location: 'Amsterdam, NL', rating: 5, text: 'Absoluut indrukwekkende kwaliteit! De Magnitude Legend speelt als een professioneel apparaat. Levering was snel en de verpakking perfect. Sterke aanbeveling!', product: 'Magnitude Legend Bat' },
-  { name: 'Priya S.', location: 'Rotterdam, NL', rating: 5, text: 'Eindelijk een Nederlandse plek voor cricket! De Raptor handschoenen passen perfect en de kwaliteit is op wereldniveau. Ik bestel zeker opnieuw.', product: 'Raptor Batting Handschoenen' },
-  { name: 'Arjun K.', location: 'Den Haag, NL', rating: 5, text: 'Als teamkapitein bestel ik regelmatig voor ons team. Mantra Sports NL is betrouwbaar, de groothandelsprijzen zijn eerlijk en de service is uitstekend.', product: 'Teambestelling — Beschermende Uitrusting' },
 ]
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -543,30 +536,6 @@ export function HomePageClient({ heroImageUrl, heroProduct, willowImageUrl, cate
               </div>
               <h3 className="mb-3 font-display text-[18px] font-semibold uppercase tracking-[0.04em]" style={{ color: '#111111' }}>{item.title}</h3>
               <p className="text-[14px] leading-relaxed" style={{ color: '#6B6B6B' }}>{item.text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════
-          REVIEWS
-      ══════════════════════════════════════════════════════════════ */}
-      <section aria-labelledby="reviews-heading" style={{ padding: '80px 60px', background: '#F8F7F4', borderBottom: '1px solid #E0DFDB' }}>
-        <div className="mb-12 text-center">
-          <p className="mb-2 font-display text-[11px] font-semibold uppercase tracking-[0.22em]" style={{ color: '#e85d1a' }}>Klantbeoordelingen</p>
-          <h2 id="reviews-heading" className="font-display font-bold uppercase leading-tight tracking-[0.01em]" style={{ fontSize: 'clamp(34px, 4vw, 52px)', color: '#111111' }}>Wat onze klanten zeggen</h2>
-        </div>
-        <div className="grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', border: '1px solid #E0DFDB' }}>
-          {REVIEWS.map((review, i) => (
-            <div key={review.name} className="flex flex-col bg-white" style={{ padding: '36px 32px', borderRight: i < REVIEWS.length - 1 ? '1px solid #E0DFDB' : 'none' }}>
-              <Quote className="mb-4 h-8 w-8" style={{ color: '#E0DFDB' }} aria-hidden="true" />
-              <div className="mb-4"><StarRating rating={review.rating} /></div>
-              <p className="mb-6 flex-1 text-[14px] leading-[1.75]" style={{ color: '#333333' }}>"{review.text}"</p>
-              <div style={{ borderTop: '1px solid #F2F1EE', paddingTop: '16px' }}>
-                <p className="font-display text-[15px] font-semibold uppercase tracking-[0.04em]" style={{ color: '#111111' }}>{review.name}</p>
-                <p className="text-[12px]" style={{ color: '#6B6B6B' }}>{review.location}</p>
-                <p className="mt-1 text-[11px] font-medium uppercase tracking-wider" style={{ color: '#e85d1a' }}>{review.product}</p>
-              </div>
             </div>
           ))}
         </div>
