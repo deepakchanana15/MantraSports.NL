@@ -64,13 +64,12 @@ export function Navbar() {
         style={{ background: '#111111' }}
         className="py-[9px] px-4 text-center text-[12px] font-medium tracking-[0.08em] text-white"
       >
-        🏏 Gratis verzending vanaf €100 &nbsp;|&nbsp; Code{' '}
-        <strong>ERSTBESTELLUNG5</strong> voor 5% korting
+        🏏 Groothandels- en clubprijzen voor teams, academies en winkels
         <Link
-          href="/shop"
+          href="/wholesale"
           className="ml-2 text-[#e85d1a] hover:underline"
         >
-          Nu shoppen →
+          Offerte aanvragen →
         </Link>
       </div>
 

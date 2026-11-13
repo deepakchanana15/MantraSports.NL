@@ -85,7 +85,7 @@ export function Footer({ contactEmail }: { contactEmail?: string }) {
             className="mb-6 max-w-[280px] text-[14px] leading-relaxed"
             style={{ color: '#A0A0A0' }}
           >
-            Premium cricketbats, beschermende uitrusting, teamkleding en accessoires.
+            Groothandel in cricketbats, beschermende uitrusting, performance sportkleding en accessoires voor clubs en winkels.
             Prestaties voor kampioenen op elk niveau.
           </p>
 

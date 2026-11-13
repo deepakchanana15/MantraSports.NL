@@ -3,9 +3,9 @@ import type { NavItem } from '@/types'
 // ─── Core Site Configuration ─────────────────────────────────────────────────
 export const SITE_CONFIG = {
   name: 'Mantra Sports NL',
-  tagline: 'Speel zonder grenzen.',
+  tagline: 'Performance. Got. Simplified.',
   description:
-    'Mantra Sports NL — Premium cricketbats, beschermende uitrusting, ballen, teamkleding en accessoires. Gebouwd voor prestaties. Wereldwijd vertrouwd.',
+    'Mantra Sports Nederland — groothandel en B2B-levering van premium cricketbats, beschermende uitrusting, ballen, performance sportkleding en accessoires voor clubs, academies, scholen en winkels.',
   // Canonical production origin — the apex domain 308-redirects here, so all
   // absolute URLs (metadataBase, canonicals, sitemap, robots, JSON-LD) use this host.
   url: 'https://www.mantrasports.nl',
@@ -16,9 +16,9 @@ export const SITE_CONFIG = {
 
   contact: {
     email: 'info@mantrasports.nl',
-    phone: '+61 46 624 2222',
+    phone: '+1 (385) 601-3759',
     address: 'Unit 2, 5 Ford Court, Newnham TAS 7248, Australië',
-    whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? 'TO_BE_PROVIDED',
+    whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '+12679016382',
   },
 
   // Operating company (parent company, Australia)
@@ -42,9 +42,9 @@ export const SITE_CONFIG = {
 
   seo: {
     titleTemplate: '%s | Mantra Sports NL',
-    defaultTitle: 'Mantra Sports NL — Premium Cricket Uitrusting',
+    defaultTitle: 'Groothandel Cricketuitrusting Nederland | Mantra Sports',
     defaultDescription:
-      'Premium cricketbats, beschermende uitrusting, teamkleding en accessoires bij Mantra Sports Nederland. Groothandel & B2B-aanvragen welkom.',
+      'Groothandel in cricketuitrusting voor clubs, academies, scholen en winkels in Nederland en België: Engelse wilgenhouten bats, pads, handschoenen, helmen, ballen en performance sportkleding. Vraag een B2B-offerte aan.',
     defaultOgImage: '/images/og-default.jpg',
     twitterHandle: '@mantrasports',
   },
@@ -77,8 +77,7 @@ export const MAIN_NAV: NavItem[] = [
       { label: 'Beschermende Uitrusting', href: '/categories/protective-gear' },
       { label: 'Ballen', href: '/categories/balls' },
       { label: 'Accessoires', href: '/categories/accessories' },
-      { label: 'Teamkleding', href: '/categories/teamwear' },
-      { label: 'Aangepaste Kleding', href: '/categories/custom-apparel' },
+      { label: 'Performance Sportkleding', href: '/categories/custom-apparel' },
     ],
   },
   {
@@ -116,8 +115,7 @@ export const FOOTER_NAV = {
       { label: 'Beschermende Uitrusting', href: '/categories/protective-gear' },
       { label: 'Ballen', href: '/categories/balls' },
       { label: 'Accessoires', href: '/categories/accessories' },
-      { label: 'Teamkleding', href: '/categories/teamwear' },
-      { label: 'Aangepaste Kleding', href: '/categories/custom-apparel' },
+      { label: 'Performance Sportkleding', href: '/categories/custom-apparel' },
     ],
   },
   company: {
@@ -162,7 +160,7 @@ export const CATEGORY_NAMES_NL: Record<string, string> = {
   'protective-gear': 'Beschermende Uitrusting',
   'accessories':     'Accessoires',
   'teamwear':        'Teamkleding',
-  'custom-apparel':  'Aangepaste Kleding',
+  'custom-apparel':  'Performance Sportkleding',
 }
 
 export function categoryNameNl(slug: string, fallback: string): string {
@@ -174,12 +172,12 @@ export function categoryNameNl(slug: string, fallback: string): string {
 export const DEFAULT_SITE_SETTINGS = {
   hero_image_url: '',
   site_name: 'Mantra Sports NL',
-  site_tagline: 'Speel zonder grenzen.',
+  site_tagline: 'Performance. Got. Simplified.',
   site_description: SITE_CONFIG.description,
   contact_email: 'info@mantrasports.nl',
   contact_phone: SITE_CONFIG.contact.phone,
   contact_address: SITE_CONFIG.contact.address,
-  whatsapp_number: 'TO_BE_PROVIDED',
+  whatsapp_number: '+12679016382',
   social_instagram: '',
   social_facebook: '',
   social_linkedin: '',

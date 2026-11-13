@@ -14,7 +14,7 @@ const OFFERS = [
   {
     icon: Shirt,
     title: 'Maatwerk in clubkleuren',
-    text: 'Teamkleding, kitbags en uitrusting in de kleuren en met het logo van jouw club of school.',
+    text: 'Performance sportkleding, kitbags en uitrusting in de kleuren en met het logo van jouw club of school.',
   },
   {
     icon: Package,
