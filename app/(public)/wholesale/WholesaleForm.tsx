@@ -24,6 +24,7 @@ export function WholesaleForm() {
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
   const [selected, setSelected] = useState<string[]>([])
+  const [brochureUrls, setBrochureUrls] = useState<string[]>([])
 
   const toggle = (item: string) =>
     setSelected((prev) => (prev.includes(item) ? prev.filter((x) => x !== item) : [...prev, item]))
@@ -43,6 +44,7 @@ export function WholesaleForm() {
     const result = await submitEnquiry(fd)
     if (result.ok) {
       setSuccess(true)
+      setBrochureUrls(result.brochureUrls ?? [])
     } else {
       setError(result.error ?? 'Fout bij verzenden.')
     }
@@ -59,6 +61,27 @@ export function WholesaleForm() {
         <p className="max-w-[360px] text-[15px] leading-relaxed" style={{ color: '#6B6B6B' }}>
           Bedankt voor je groothandelsaanvraag. We nemen doorgaans binnen 24 uur contact op per e-mail of telefoon.
         </p>
+        {brochureUrls.length > 0 && (
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+            {brochureUrls.map((url, i) => (
+              <a
+                key={url}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-[2px] font-display text-[13px] font-bold uppercase tracking-[0.1em] text-white transition-colors"
+                style={{ background: '#e85d1a', padding: '14px 28px' }}
+              >
+                {i === 0 ? 'Download Brochure (NL)' : 'Download Brochure (EN)'} <ArrowRight className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
+        )}
+        {brochureUrls.length > 0 && (
+          <p className="mt-3 text-[12px]" style={{ color: '#A0A0A0' }}>
+            We hebben je ook een kopie per e-mail gestuurd.
+          </p>
+        )}
         <p className="mt-4 font-display text-[13px] font-semibold uppercase tracking-wider" style={{ color: '#e85d1a' }}>
           Mantra Sports NL Team
         </p>
