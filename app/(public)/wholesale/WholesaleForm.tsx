@@ -14,8 +14,7 @@ const PRODUCT_OPTIONS = [
   'Batting Handschoenen',
   'Helm',
   'Cricketballen',
-  'Teamkleding',
-  'Aangepaste Kleding',
+  'Performance Sportkleding',
   'Sporttassen & Accessoires',
 ]
 

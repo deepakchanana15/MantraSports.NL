@@ -1,3 +1,4 @@
+import { OrganizationSchema, WebsiteSchema } from '@/components/seo/JsonLd'
 import type { Metadata, Viewport } from 'next'
 import { Inter, Oswald } from 'next/font/google'
 import { ThemeProvider } from '@/components/layout/ThemeProvider'
@@ -28,15 +29,13 @@ export const metadata: Metadata = {
   },
   description: SITE_CONFIG.seo.defaultDescription,
   keywords: [
-    'cricketbats Nederland',
-    'cricket uitrusting kopen',
+    'groothandel cricket Nederland',
+    'cricketbats kopen',
+    'cricket club uitrusting',
+    'B2B cricket',
+    'Engels wilgenhout cricketbat',
+    'cricket sportkleding',
     'Mantra Sports',
-    'cricket beschermende uitrusting',
-    'cricket teamkleding groothandel',
-    'aangepaste cricket kleding',
-    'cricketballen',
-    'cricket bats Netherlands',
-    'cricket equipment NL',
   ],
   authors: [{ name: 'Mantra Sports NL' }],
   creator: 'Mantra Sports NL',
@@ -91,6 +90,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={`${inter.variable} ${oswald.variable} antialiased`}>
+        <OrganizationSchema />
+        <WebsiteSchema />
         <ThemeProvider>
           {children}
         </ThemeProvider>

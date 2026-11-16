@@ -71,22 +71,21 @@ const CATEGORIES = [
   { name: 'Ballen', slug: 'balls', emoji: '🔴', href: '/categories/balls' },
   { name: 'Beschermende Uitrusting', slug: 'protective-gear', emoji: '🛡️', href: '/categories/protective-gear' },
   { name: 'Accessoires', slug: 'accessories', emoji: '🎒', href: '/categories/accessories' },
-  { name: 'Teamkleding', slug: 'teamwear', emoji: '🎽', href: '/categories/teamwear' },
-  { name: 'Aangepaste Kleding', slug: 'custom-apparel', emoji: '👕', href: '/categories/custom-apparel' },
+  { name: 'Performance Sportkleding', slug: 'custom-apparel', emoji: '👕', href: '/categories/custom-apparel' },
 ]
 
 const TRUST_ITEMS = [
-  { icon: Truck, text: 'Gratis verzending vanaf €100' },
-  { icon: ShieldCheck, text: 'Veilig betalen & privacy' },
-  { icon: RefreshCw, text: '30 dagen retourrecht' },
-  { icon: Award, text: 'Authentieke premiumkwaliteit' },
-  { icon: Headphones, text: 'Persoonlijke klantenservice' },
+  { icon: Truck, text: 'Bulk- en clubbestellingen' },
+  { icon: ShieldCheck, text: 'Vervanging bij fabricagefouten' },
+  { icon: RefreshCw, text: 'Offerte binnen 1 werkdag' },
+  { icon: Award, text: 'Echt Engels wilgenhout' },
+  { icon: Headphones, text: 'Echte mensen, echte hulp' },
 ]
 
 const WHY_ITEMS = [
   { icon: Award, title: 'Premium Kwaliteit', text: 'Elke bat handgemaakt van het beste Engels wilgenhout. Vakmanschap dat je op het veld voelt.' },
   { icon: Package, title: 'Groothandel & B2B', text: 'Flexibele groothandelsprijzen voor clubs, scholen en dealers. Partnerschap dat schaalt.' },
-  { icon: Truck, title: 'EU-wijde Verzending', text: 'Snelle levering naar alle EU-landen. Gratis verzending vanaf €100 bestelling.' },
+  { icon: Truck, title: 'Gebouwd voor bulkbestellingen', text: 'Offertes voor clubs, scholen, academies en winkels die een heel team uitrusten, met maatadvies vooraf.' },
   { icon: Headphones, title: 'Deskundig Advies', text: 'Ons expertteam helpt je de perfecte uitrusting te vinden voor jouw speelniveau.' },
 ]
 
@@ -264,22 +263,22 @@ export function HomePageClient({ heroImageUrl, heroProduct, willowImageUrl, cate
         {/* Left — Text */}
         <div className="flex flex-col justify-center" style={{ padding: '80px 60px 80px 80px', borderRight: '1px solid #E0DFDB' }}>
           <span className="mb-7 inline-flex items-center gap-2 self-start rounded-[2px] px-[14px] py-[6px] font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-white" style={{ background: '#e85d1a' }}>
-            🏏 Nieuw in Nederland
+            🏏 B2B &amp; Groothandel · Nederland
           </span>
 
           <h1 id="hero-heading" className="mb-6 font-display font-bold uppercase leading-[0.93] tracking-[-0.01em]" style={{ fontSize: 'clamp(52px, 7vw, 88px)', color: '#111111' }}>
-            SPEEL ZONDER <span style={{ color: '#e85d1a' }}>GRENZEN</span>
+            PERFORMANCE. GOT. <span style={{ color: '#e85d1a' }}>SIMPLIFIED.</span>
           </h1>
 
           <p className="mb-10 max-w-[420px] text-[16px] font-light leading-[1.7]" style={{ color: '#6B6B6B' }}>
-            Premium cricketbats, beschermende uitrusting en teamkleding — direct naar Nederland geleverd. Vertrouwd door spelers door heel Europa.
+            Groothandel in cricketbats, beschermende uitrusting en performance sportkleding voor clubs, academies, scholen en winkels. Vertel ons wat je team nodig heeft en wij sturen een offerte.
           </p>
 
           <div className="mb-14 flex flex-wrap gap-3">
             <Link href="/shop" className="inline-flex items-center gap-2 rounded-[2px] font-display text-[15px] font-medium uppercase tracking-[0.1em] text-white transition-colors" style={{ background: '#e85d1a', padding: '16px 36px', border: '2px solid #e85d1a' }}
               onMouseEnter={(e) => { e.currentTarget.style.background = '#c44b0f'; e.currentTarget.style.borderColor = '#c44b0f' }}
               onMouseLeave={(e) => { e.currentTarget.style.background = '#e85d1a'; e.currentTarget.style.borderColor = '#e85d1a' }}>
-              Nu winkelen <ArrowRight className="h-4 w-4" />
+              Bekijk assortiment <ArrowRight className="h-4 w-4" />
             </Link>
             <Link href="/contact" className="inline-flex items-center gap-2 rounded-[2px] font-display text-[15px] font-medium uppercase tracking-[0.1em] transition-colors" style={{ color: '#111111', padding: '15px 36px', border: '2px solid #111111', background: 'transparent' }}
               onMouseEnter={(e) => { e.currentTarget.style.background = '#111111'; e.currentTarget.style.color = '#ffffff' }}
@@ -289,7 +288,7 @@ export function HomePageClient({ heroImageUrl, heroProduct, willowImageUrl, cate
           </div>
 
           <div className="flex" style={{ borderTop: '1px solid #E0DFDB' }}>
-            {[{ num: '500+', label: 'Klanten' }, { num: '50+', label: 'Producten' }, { num: 'EU-wijd', label: 'Levering' }].map((stat, i) => (
+            {[{ num: 'B2B', label: 'Alleen groothandel' }, { num: 'Players’–Gr III', label: 'Engels wilgenhout' }, { num: 'Bulk', label: 'Clubprijzen' }].map((stat, i) => (
               <div key={stat.num} className="flex-1 pt-6" style={{ borderRight: i < 2 ? '1px solid #E0DFDB' : 'none', paddingRight: i < 2 ? '24px' : '0', paddingLeft: i > 0 ? '24px' : '0' }}>
                 <div className="font-display text-[32px] font-semibold leading-none" style={{ color: '#e85d1a' }}>{stat.num}</div>
                 <div className="mt-1 text-[11px] font-medium uppercase tracking-[0.12em]" style={{ color: '#6B6B6B' }}>{stat.label}</div>
@@ -410,7 +409,7 @@ export function HomePageClient({ heroImageUrl, heroProduct, willowImageUrl, cate
                   {cat.name}
                 </span>
                 <span className="mt-1 block text-[11px] transition-colors" style={{ color: '#6B6B6B' }}>
-                  {count !== null ? `${count} producten` : cat.slug === 'custom-apparel' ? 'Aangepaste bestellingen' : ''}
+                  {count !== null ? `${count} producten` : cat.slug === 'custom-apparel' ? 'Op aanvraag' : ''}
                 </span>
               </Link>
             )
@@ -503,7 +502,7 @@ export function HomePageClient({ heroImageUrl, heroProduct, willowImageUrl, cate
               Gemaakt van het fijnste Engels wilgenhout — elke bat een uniek stuk. Handgeselecteerde nerf, handgemaakte kling, professionele prestaties.
             </p>
             <ul className="mb-8 space-y-3">
-              {['Engels Wilgenhout Klasse I–III', 'Handgemaakte klingverwerking', 'Professioneel ingeslagen & geoliëd', 'Individuele gewichts- en gripkeuze'].map((feat) => (
+              {['Engels Wilgenhout Players’ Grade bis Grade III', 'Handgemaakte klingverwerking', 'Professioneel ingeslagen & geoliëd', 'Individuele gewichts- en gripkeuze'].map((feat) => (
                 <li key={feat} className="flex items-start gap-3 text-[14px]" style={{ color: '#A0A0A0' }}>
                   <ChevronRight className="mt-0.5 h-4 w-4 shrink-0" style={{ color: '#e85d1a' }} />{feat}
                 </li>

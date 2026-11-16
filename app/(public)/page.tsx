@@ -4,9 +4,9 @@ import { HomePageClient } from '@/components/home/HomePageClient'
 import type { CategoryDisplay, ProductDisplay, HeroProduct } from '@/components/home/HomePageClient'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Mantra Sports NL — Premium Cricket Uitrusting' },
+  title: { absolute: 'Groothandel Cricketuitrusting Nederland | Mantra Sports' },
   description:
-    'Premium cricketbats, beschermende uitrusting, teamkleding en accessoires bij Mantra Sports Nederland. Groothandel & B2B-aanvragen welkom.',
+    'Groothandel in cricketuitrusting voor clubs, academies, scholen en winkels: Engelse wilgenhouten bats, beschermende uitrusting en ballen. Vraag een offerte aan.',
 }
 
 function toDisplay(p: {
