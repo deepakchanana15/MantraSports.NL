@@ -71,7 +71,7 @@ export function WholesaleForm() {
                 className="inline-flex items-center gap-2 rounded-[2px] font-display text-[13px] font-bold uppercase tracking-[0.1em] text-white transition-colors"
                 style={{ background: '#e85d1a', padding: '14px 28px' }}
               >
-                {i === 0 ? 'Download Brochure (NL)' : 'Download Brochure (EN)'} <ArrowRight className="h-4 w-4" />
+                {i === 0 ? 'Brochure downloaden (NL)' : 'Download Brochure (EN)'} <ArrowRight className="h-4 w-4" />
               </a>
             ))}
           </div>
